@@ -8,9 +8,17 @@ export default class CoinContainer extends Component {
     super(props);
     this.state = {
       data: [],
-      loading: false
+      loading: false,
+      sorted: []
     };
   }
+
+  sortBy = data => {
+    let sortedSupply = this.state.data.sort((a, b) => {
+      return a.cirulating_supply - b.cirulating_supply;
+    });
+    this.setState({ sorted: sortedSupply });
+  };
 
   componentDidMount() {
     this.setState({ loading: true });
@@ -20,7 +28,6 @@ export default class CoinContainer extends Component {
       )
       .then(response => {
         this.setState({ data: response.data.data, loading: false });
-        console.log(this.state.data);
       });
   }
 
@@ -45,6 +52,6 @@ export default class CoinContainer extends Component {
         </div>
       );
     }
-    return <CoinItems coins={this.state.data} />;
+    return <CoinItems coins={this.state.data} sortSupply={this.sortBy} />;
   }
 }

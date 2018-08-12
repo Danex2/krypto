@@ -5,7 +5,7 @@ const numberWithCommas = x => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-const CoinItems = ({ coins }) => {
+const CoinItems = ({ coins, sortSupply }) => {
   return (
     <div>
       <table className="responsive-table centered striped">
@@ -40,40 +40,31 @@ const CoinItems = ({ coins }) => {
                 </td>
                 <td>${coin.quotes.USD.price.toFixed(2)} (USD)</td>
                 <td>
-                  {coin.quotes.USD.percent_change_1h > 0 ? (
-                    <span className="up">
-                      {" "}
-                      {coin.quotes.USD.percent_change_1h}
-                    </span>
-                  ) : (
-                    <span className="down">
-                      {coin.quotes.USD.percent_change_1h}
-                    </span>
-                  )}
+                  <span
+                    className={
+                      coin.quotes.USD.percent_change_1h > 0 ? "up" : "down"
+                    }
+                  >
+                    {coin.quotes.USD.percent_change_1h}{" "}
+                  </span>
                 </td>
                 <td>
-                  {coin.quotes.USD.percent_change_7d > 0 ? (
-                    <span className="up">
-                      {" "}
-                      {coin.quotes.USD.percent_change_7d}
-                    </span>
-                  ) : (
-                    <span className="down">
-                      {coin.quotes.USD.percent_change_7d}
-                    </span>
-                  )}
+                  <span
+                    className={
+                      coin.quotes.USD.percent_change_7d > 0 ? "up" : "down"
+                    }
+                  >
+                    {coin.quotes.USD.percent_change_7d}{" "}
+                  </span>
                 </td>
                 <td>
-                  {coin.quotes.USD.percent_change_24h > 0 ? (
-                    <span className="up">
-                      {" "}
-                      {coin.quotes.USD.percent_change_24h}
-                    </span>
-                  ) : (
-                    <span className="down">
-                      {coin.quotes.USD.percent_change_24h}
-                    </span>
-                  )}
+                  <span
+                    className={
+                      coin.quotes.USD.percent_change_24h > 0 ? "up" : "down"
+                    }
+                  >
+                    {coin.quotes.USD.percent_change_24h}{" "}
+                  </span>
                 </td>
                 <td>{coin.rank}</td>
               </tr>
