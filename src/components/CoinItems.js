@@ -12,9 +12,18 @@ const CoinItems = ({ coins, sortSupply }) => {
         <thead>
           <tr>
             <th>Coin</th>
-            <th>Supply</th>
-            <th>Market Cap</th>
-            <th>Price</th>
+            <th>
+              Supply <button>▲</button>
+              <button>▼</button>
+            </th>
+            <th>
+              Market Cap <button>▲</button>
+              <button>▼</button>
+            </th>
+            <th>
+              Price <button>▲</button>
+              <button>▼</button>
+            </th>
             <th>Change (1h)</th>
             <th>Change (7d)</th>
             <th>Change (24h)</th>
@@ -45,7 +54,7 @@ const CoinItems = ({ coins, sortSupply }) => {
                       coin.quotes.USD.percent_change_1h > 0 ? "up" : "down"
                     }
                   >
-                    {coin.quotes.USD.percent_change_1h}{" "}
+                    % {coin.quotes.USD.percent_change_1h}{" "}
                   </span>
                 </td>
                 <td>
@@ -54,7 +63,7 @@ const CoinItems = ({ coins, sortSupply }) => {
                       coin.quotes.USD.percent_change_7d > 0 ? "up" : "down"
                     }
                   >
-                    {coin.quotes.USD.percent_change_7d}{" "}
+                    % {coin.quotes.USD.percent_change_7d}{" "}
                   </span>
                 </td>
                 <td>
@@ -63,7 +72,7 @@ const CoinItems = ({ coins, sortSupply }) => {
                       coin.quotes.USD.percent_change_24h > 0 ? "up" : "down"
                     }
                   >
-                    {coin.quotes.USD.percent_change_24h}{" "}
+                    % {coin.quotes.USD.percent_change_24h}{" "}
                   </span>
                 </td>
                 <td>{coin.rank}</td>

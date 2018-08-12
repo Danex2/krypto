@@ -8,17 +8,9 @@ export default class CoinContainer extends Component {
     super(props);
     this.state = {
       data: [],
-      loading: false,
-      sorted: []
+      loading: false
     };
   }
-
-  sortBy = data => {
-    let sortedSupply = this.state.data.sort((a, b) => {
-      return a.cirulating_supply - b.cirulating_supply;
-    });
-    this.setState({ sorted: sortedSupply });
-  };
 
   componentDidMount() {
     this.setState({ loading: true });
@@ -28,8 +20,17 @@ export default class CoinContainer extends Component {
       )
       .then(response => {
         this.setState({ data: response.data.data, loading: false });
+        console.log(this.state.data);
       });
   }
+
+  sortBy = () => {
+    this.state.data.sort(function(a, b) {
+      if (a.circulating_supply < b.circulating_supply) return -1;
+      if (a.circulating_supply > b.circulating_supply) return 1;
+      return 0;
+    });
+  };
 
   render() {
     const { loading } = this.state;
