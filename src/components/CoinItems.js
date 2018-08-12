@@ -5,7 +5,15 @@ const numberWithCommas = x => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-const CoinItems = ({ coins, sortSupply }) => {
+const CoinItems = ({
+  coins,
+  sortAsc,
+  sortDesc,
+  sortCapAsc,
+  sortCapDesc,
+  sortPriceAsc,
+  sortPriceDesc
+}) => {
   return (
     <div>
       <table className="responsive-table centered striped">
@@ -13,16 +21,16 @@ const CoinItems = ({ coins, sortSupply }) => {
           <tr>
             <th>Coin</th>
             <th>
-              Supply <button>▲</button>
-              <button>▼</button>
+              Supply <button onClick={sortDesc}>▲</button>
+              <button onClick={sortAsc}>▼</button>
             </th>
             <th>
-              Market Cap <button>▲</button>
-              <button>▼</button>
+              Market Cap <button onClick={sortCapDesc}>▲</button>
+              <button onClick={sortCapAsc}>▼</button>
             </th>
             <th>
-              Price <button>▲</button>
-              <button>▼</button>
+              Price <button onClick={sortPriceDesc}>▲</button>
+              <button onClick={sortPriceAsc}>▼</button>
             </th>
             <th>Change (1h)</th>
             <th>Change (7d)</th>

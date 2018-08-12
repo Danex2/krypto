@@ -2,7 +2,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <div>
+    <div className="navbar-fixed">
       <nav>
         <div className="nav-wrapper grey darken-4">
           <a href="#" className="brand-logo center">

@@ -8,7 +8,10 @@ export default class CoinContainer extends Component {
     super(props);
     this.state = {
       data: [],
-      loading: false
+      loading: false,
+      sortedSupply: [],
+      sortedCap: [],
+      sortedPrice: []
     };
   }
 
@@ -20,16 +23,63 @@ export default class CoinContainer extends Component {
       )
       .then(response => {
         this.setState({ data: response.data.data, loading: false });
-        console.log(this.state.data);
       });
   }
 
-  sortBy = () => {
-    this.state.data.sort(function(a, b) {
+  /* I have no idea why or how the code works below, legit it just worked so I went with it
+  Probably going to refactor at some point and use redux*/
+  sortMarketSupplyDesc = () => {
+    const sortedSup = this.state.data.sort(function(a, b) {
+      if (a.circulating_supply > b.circulating_supply) return -1;
+      if (a.circulating_supply < b.circulating_supply) return 1;
+      return 0;
+    });
+    this.setState({ sortedSupply: sortedSup });
+  };
+
+  sortMarketSupplyAsc = () => {
+    const sortedSup = this.state.data.sort(function(a, b) {
       if (a.circulating_supply < b.circulating_supply) return -1;
       if (a.circulating_supply > b.circulating_supply) return 1;
       return 0;
     });
+    this.setState({ sortedSupply: sortedSup });
+  };
+
+  sortCapAsc = () => {
+    const sortedCap = this.state.data.sort(function(a, b) {
+      if (a.quotes.USD.market_cap < b.quotes.USD.market_cap) return -1;
+      if (a.quotes.USD.market_cap > b.quotes.USD.market_cap) return 1;
+      return 0;
+    });
+    this.setState({ sortedCap });
+  };
+
+  sortCapDesc = () => {
+    const sortedCap = this.state.data.sort(function(a, b) {
+      if (a.quotes.USD.market_cap > b.quotes.USD.market_cap) return -1;
+      if (a.quotes.USD.market_cap < b.quotes.USD.market_cap) return 1;
+      return 0;
+    });
+    this.setState({ sortedCap });
+  };
+
+  sortPriceAsc = () => {
+    const sortedPrice = this.state.data.sort(function(a, b) {
+      if (a.quotes.USD.price < b.quotes.USD.price) return -1;
+      if (a.quotes.USD.price > b.quotes.USD.price) return 1;
+      return 0;
+    });
+    this.setState({ sortedPrice });
+  };
+
+  sortPriceDesc = () => {
+    const sortedPrice = this.state.data.sort(function(a, b) {
+      if (a.quotes.USD.price > b.quotes.USD.price) return -1;
+      if (a.quotes.USD.price < b.quotes.USD.price) return 1;
+      return 0;
+    });
+    this.setState({ sortedPrice });
   };
 
   render() {
@@ -53,6 +103,18 @@ export default class CoinContainer extends Component {
         </div>
       );
     }
-    return <CoinItems coins={this.state.data} sortSupply={this.sortBy} />;
+    return (
+      <div>
+        <CoinItems
+          coins={this.state.data}
+          sortDesc={this.sortMarketSupplyDesc}
+          sortAsc={this.sortMarketSupplyAsc}
+          sortCapAsc={this.sortCapAsc}
+          sortCapDesc={this.sortCapDesc}
+          sortPriceAsc={this.sortPriceAsc}
+          sortPriceDesc={this.sortPriceDesc}
+        />
+      </div>
+    );
   }
 }
