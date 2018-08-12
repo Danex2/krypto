@@ -3,6 +3,6 @@
 clone with git then ```yarn``` and ```yarn start```
 
 ## What I used
-axios
-create-react-app
-materialize
+axios  
+create-react-app  
+materialize  
