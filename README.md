@@ -6,3 +6,5 @@ clone with git then ```yarn``` and ```yarn start```
 axios  
 create-react-app  
 materialize  
+
+data provided by coinmarketcap.com
