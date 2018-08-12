@@ -8,3 +8,6 @@ create-react-app
 materialize  
 
 data provided by coinmarketcap.com
+
+## Live demo
+http://wrong-fang.surge.sh/
