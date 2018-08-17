@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
 import CoinItems from "./CoinItems";
 import "../App.css";
+import { getCryptoData } from "../actions/Sort";
 
-export default class CoinContainer extends Component {
+class CoinContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,14 +17,10 @@ export default class CoinContainer extends Component {
   }
 
   componentDidMount() {
-    this.setState({ loading: true });
-    axios
-      .get(
-        "https://api.coinmarketcap.com/v2/ticker/?limit=100&sort=id&structure=array"
-      )
-      .then(response => {
-        this.setState({ data: response.data.data, loading: false });
-      });
+    this.props.dispatch(getCryptoData());
+    setTimeout(() => {
+      console.log(this.props.data);
+    }, 5000);
   }
 
   /* I have no idea why or how the code works below, legit it just worked so I went with it
@@ -105,16 +102,14 @@ export default class CoinContainer extends Component {
     }
     return (
       <div>
-        <CoinItems
-          coins={this.state.data}
-          sortDesc={this.sortMarketSupplyDesc}
-          sortAsc={this.sortMarketSupplyAsc}
-          sortCapAsc={this.sortCapAsc}
-          sortCapDesc={this.sortCapDesc}
-          sortPriceAsc={this.sortPriceAsc}
-          sortPriceDesc={this.sortPriceDesc}
-        />
+        <div>yolo</div>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  data: state
+});
+
+export default connect(mapStateToProps)(CoinContainer);
