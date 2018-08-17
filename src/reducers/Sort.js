@@ -1,5 +1,6 @@
 const init_state = {
-  data: []
+  data: [],
+  loading: false
 };
 
 export default function(state = init_state, action) {
@@ -7,7 +8,13 @@ export default function(state = init_state, action) {
     case "GET_CRYPTO":
       return {
         ...state,
-        data: action.payload
+        data: action.payload,
+        loading: false
+      };
+    case "CRYPTO_LOADING":
+      return {
+        ...state,
+        loading: true
       };
     default:
       return state;

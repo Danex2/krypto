@@ -6,9 +6,24 @@ export const getCryptoData = () => dispatch => {
       "https://api.coinmarketcap.com/v2/ticker/?limit=100&sort=id&structure=array"
     )
     .then(res => {
+      dispatch(setCryptoLoading());
       dispatch({
         type: "GET_CRYPTO",
-        payload: res.data.data
+        payload: res.data.data,
+        loading: true
       });
     });
+};
+
+export const sortBySupplyDesc = supply => {
+  return {
+    type: "SORT_SUPPLY",
+    payload: supply
+  };
+};
+
+export const setCryptoLoading = () => {
+  return {
+    type: "CRYPTO_LOADING"
+  };
 };
