@@ -3,27 +3,20 @@ import axios from "axios";
 export const getCryptoData = () => dispatch => {
   axios
     .get(
-      "https://api.coinmarketcap.com/v2/ticker/?limit=100&sort=id&structure=array"
+      "https://api.coinmarketcap.com/v2/ticker/?limit=100&sort=id&structure=array",
+      { crossdomain: true }
     )
     .then(res => {
-      dispatch(setCryptoLoading());
       dispatch({
         type: "GET_CRYPTO",
-        payload: res.data.data,
-        loading: true
+        payload: res.data.data
       });
     });
 };
 
-export const sortBySupplyDesc = supply => {
+export const sortSupplyDesc = () => {
+  console.log("is this even being clicked");
   return {
-    type: "SORT_SUPPLY",
-    payload: supply
-  };
-};
-
-export const setCryptoLoading = () => {
-  return {
-    type: "CRYPTO_LOADING"
+    type: "SORT_SUPPLY_DESC"
   };
 };

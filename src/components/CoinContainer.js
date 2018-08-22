@@ -7,31 +7,19 @@ import { getCryptoData } from "../actions/Sort";
 class CoinContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: [],
-      loading: false
-    };
   }
 
   componentDidMount() {
     this.props.getCryptoData();
     setTimeout(() => {
-      console.log(this.props.data.data);
+      console.log(this.props.data);
     }, 5000);
   }
 
   /* I have no idea why or how the code works below, legit it just worked so I went with it
   Probably going to refactor at some point and use redux*/
-  sortMarketSupplyDesc = () => {
-    const sortedSup = this.state.data.sort(function(a, b) {
-      if (a.circulating_supply > b.circulating_supply) return -1;
-      if (a.circulating_supply < b.circulating_supply) return 1;
-      return 0;
-    });
-    this.setState({ sortedSupply: sortedSup });
-  };
 
-  sortMarketSupplyAsc = () => {
+  /*sortMarketSupplyAsc = () => {
     const sortedSup = this.state.data.sort(function(a, b) {
       if (a.circulating_supply < b.circulating_supply) return -1;
       if (a.circulating_supply > b.circulating_supply) return 1;
@@ -74,17 +62,17 @@ class CoinContainer extends Component {
       return 0;
     });
     this.setState({ sortedPrice });
-  };
+  };*/
 
   render() {
-    const { data } = this.props.data;
+    const { data } = this.props;
 
     return <CoinItems coins={data} />;
   }
 }
 
 const mapStateToProps = state => ({
-  data: state
+  data: state.data
 });
 
 export default connect(
