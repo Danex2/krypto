@@ -14,9 +14,38 @@ export const getCryptoData = () => dispatch => {
     });
 };
 
+export const sortSupplyAsc = () => {
+  return {
+    type: "SORT_SUPPLY_ASC"
+  };
+};
+
 export const sortSupplyDesc = () => {
-  console.log("is this even being clicked");
   return {
     type: "SORT_SUPPLY_DESC"
+  };
+};
+
+export const sortCapAsc = () => {
+  return {
+    type: "SORT_CAP_ASC"
+  };
+};
+
+export const sortCapDesc = () => {
+  return {
+    type: "SORT_CAP_DESC"
+  };
+};
+
+export const sortPriceAsc = () => {
+  return {
+    type: "SORT_PRICE_ASC"
+  };
+};
+
+export const sortPriceDesc = () => {
+  return {
+    type: "SORT_PRICE_DESC"
   };
 };

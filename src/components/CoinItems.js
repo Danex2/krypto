@@ -1,7 +1,14 @@
 import React from "react";
 import "../App.css";
 import { connect } from "react-redux";
-import { sortSupplyDesc } from "../actions/Sort";
+import {
+  sortSupplyAsc,
+  sortSupplyDesc,
+  sortCapAsc,
+  sortCapDesc,
+  sortPriceAsc,
+  sortPriceDesc
+} from "../actions/Sort";
 
 const numberWithCommas = x => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -21,16 +28,18 @@ class CoinItems extends React.Component {
               <th>Coin</th>
               <th>
                 Supply{" "}
-                <button onClick={() => this.props.sortSupplyDesc()}>▲</button>
-                <button>▼</button>
+                <button onClick={() => this.props.sortSupplyAsc()}>▲</button>
+                <button onClick={() => this.props.sortSupplyDesc()}>▼</button>
               </th>
               <th>
-                Market Cap <button>▲</button>
-                <button>▼</button>
+                Market Cap{" "}
+                <button onClick={() => this.props.sortCapAsc()}>▲</button>
+                <button onClick={() => this.props.sortCapDesc()}>▼</button>
               </th>
               <th>
-                Price <button>▲</button>
-                <button>▼</button>
+                Price{" "}
+                <button onClick={() => this.props.sortPriceAsc()}>▲</button>
+                <button onClick={() => this.props.sortPriceDesc()}>▼</button>
               </th>
               <th>Change (1h)</th>
               <th>Change (7d)</th>
@@ -96,5 +105,12 @@ class CoinItems extends React.Component {
 
 export default connect(
   null,
-  { sortSupplyDesc }
+  {
+    sortSupplyAsc,
+    sortSupplyDesc,
+    sortCapAsc,
+    sortCapDesc,
+    sortPriceAsc,
+    sortPriceDesc
+  }
 )(CoinItems);
