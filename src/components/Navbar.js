@@ -44,6 +44,7 @@ class Navbar extends React.Component {
   }
 }
 
+//Remember that if it takes an argument that i also need to define it here
 const mapDispatchToProps = dispatch => ({
   searchCoin: coin => dispatch(searchForCoin(coin))
 });
