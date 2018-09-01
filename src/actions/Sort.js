@@ -49,3 +49,10 @@ export const sortPriceDesc = () => {
     type: "SORT_PRICE_DESC"
   };
 };
+
+export const searchForCoin = coin => {
+  return {
+    type: "SEARCH_COIN",
+    payload: coin
+  };
+};
