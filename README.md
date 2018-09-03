@@ -10,4 +10,4 @@ materialize
 data provided by coinmarketcap.com
 
 ## Live demo
-http://wrong-fang.surge.sh/
+https://kryptocurrency.herokuapp.com/
