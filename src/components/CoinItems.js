@@ -28,7 +28,9 @@ class CoinItems extends React.Component {
   render() {
     const { coins } = this.props;
     let filter = coins.filter(coin => {
-      return coin.name.indexOf(this.state.text) !== -1;
+      return (
+        coin.name.toLowerCase().indexOf(this.state.text.toLowerCase()) !== -1
+      );
     });
     return (
       <div>
