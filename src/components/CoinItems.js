@@ -17,11 +17,39 @@ const numberWithCommas = x => {
 class CoinItems extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      text: ""
+    };
   }
+
+  handleChange = e => {
+    this.setState({ text: e.target.value.substr(0, 20) });
+  };
   render() {
     const { coins } = this.props;
+    let filter = coins.filter(coin => {
+      return coin.name.indexOf(this.state.text) !== -1;
+    });
     return (
       <div>
+        <div class="nav-wrapper">
+          <form>
+            <div class="input-field">
+              <input
+                id="search"
+                type="search"
+                autoComplete="off"
+                value={this.state.text}
+                placeholder="Seach for coin.."
+                onChange={this.handleChange}
+              />
+              <label class="label-icon" for="search">
+                <i class="material-icons">search</i>
+              </label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </div>
         <table className="responsive-table centered striped">
           <thead>
             <tr>
@@ -49,7 +77,7 @@ class CoinItems extends React.Component {
           </thead>
 
           <tbody>
-            {coins.map(coin => {
+            {filter.map(coin => {
               return (
                 <tr key={coin.id}>
                   <td>{coin.name}</td>

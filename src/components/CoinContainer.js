@@ -5,10 +5,6 @@ import "../App.css";
 import { getCryptoData } from "../actions/Sort";
 
 class CoinContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.getCryptoData();
   }

@@ -56,12 +56,6 @@ export default function(state = init_state, action) {
           return 0;
         })
       });
-    case "SEARCH_COIN":
-      return Object.assign({}, state, {
-        data: state.data.filter(coin => {
-          return coin.name.includes(action.payload);
-        })
-      });
     default:
       return state;
   }
